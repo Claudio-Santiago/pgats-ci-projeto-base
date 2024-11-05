@@ -1,14 +1,14 @@
 # CI de Nivel 01 - Disparo manual a partir de 1 click
 
 #nome do pipeline
-name: 'Execução Manual'
+name: 'Execução Agandado'
 
 # Triggres ou gatilhos de execução
   #Getilho de exec manual = workflow_dispatch
 
 on:
   schedule:
-    - cron: '53 20 * * 2'
+    - cron: '26 21 * * *'
 
 jobs:
 
