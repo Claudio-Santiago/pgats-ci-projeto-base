@@ -26,14 +26,14 @@ jobs:
       #  with:
       #   node-version: lts/*
 
-     - name: Instalando yarn
-       run: npm install -g yarn
-    
-     - name: Instalando dependencias
-       run: yarn
+      - name: Instalando yarn
+        run: npm install -g yarn
+      
+      - name: Instalando dependencias
+        run: yarn
 
-     - name: Instalando Playwright
-       run: yarn playwright install
+      - name: Instalando Playwright
+        run: yarn playwright install
 
-     - name: Testes E2E
-       run: yarn run e2e
+      - name: Testes E2E
+        run: yarn run e2e
