@@ -8,7 +8,7 @@ name: 'Execução Agandado'
 
 on:
   schedule:
-    - cron: '53 20 * * 2'
+    - cron: '54 20 * * 2'
 
 jobs:
 
