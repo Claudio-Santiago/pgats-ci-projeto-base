@@ -40,5 +40,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
+          if: ${{ !cancelled() }}
           name: relatorio-de-testes
           path:  ./playwright-report
