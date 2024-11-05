@@ -42,7 +42,7 @@ jobs:
         run: yarn run e2e
 
       - uses: actions/upload-artifact@v4
-        with:
-          if: ${{ !cancelled() }}
+      if: ${{ !cancelled() }}
+      with:
           name: relatorio-de-testes
           path:  ./playwright-report
