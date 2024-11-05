@@ -1,0 +1,46 @@
+# CI de Nivel 01 - Disparo manual a partir de 1 click
+
+#nome do pipeline
+name: 'Execução Manual'
+
+# Triggres ou gatilhos de execução
+  #Getilho de exec manual = workflow_dispatch
+
+on:
+  schedule:
+    - cron: '53 20 * * 2'
+
+jobs:
+
+  # Descrição do job
+  e2e-tests:
+    
+    # Maquina que o job vai executar
+    runs-on: 
+       - ubuntu-latest
+
+    # passo a passo das acoes do job
+    steps:
+      - uses: actions/checkout@v4
+      
+      #- uses: actions/setup-node@v4
+      #  with:
+      #   node-version: lts/*
+
+      - name: Instalando yarn
+        run: npm install -g yarn
+      
+      - name: Instalando dependencias
+        run: yarn
+
+      - name: Instalando Playwright
+        run: yarn playwright install
+
+      - name: Testes E2E
+        run: yarn run e2e
+
+      - uses: actions/upload-artifact@v4
+        with:
+          if: ${{ !cancelled() }}
+          name: relatorio-de-testes
+          path:  ./playwright-report
