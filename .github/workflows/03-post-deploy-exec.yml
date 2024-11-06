@@ -4,7 +4,7 @@
 name: 'Execução por Deploy'
 
 # Triggres ou gatilhos de execução
-  #Getilho de exec manual = workflow_dispatch
+#Getilho de exec manual = workflow_dispatch
 
 on:
   workflow_run:
@@ -13,28 +13,26 @@ on:
       - completed
 
 jobs:
-
   # Descrição do job
   e2e-tests:
-    
     # Maquina que o job vai executar
-    runs-on: 
-       - ubuntu-latest
-    
+    runs-on:
+      - ubuntu-latest
+
     # Valida se o build foi executado com sucesso
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # passo a passo das acoes do job
     steps:
       - uses: actions/checkout@v4
-      
+
       #- uses: actions/setup-node@v4
       #  with:
       #   node-version: lts/*
 
       - name: Instalando yarn
         run: npm install -g yarn
-      
+
       - name: Instalando dependencias
         run: yarn
 
@@ -48,4 +46,4 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: relatorio-de-testes
-          path:  ./playwright-report
+          path: ./playwright-report

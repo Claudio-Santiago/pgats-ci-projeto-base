@@ -4,17 +4,15 @@
 name: 'Execução Integrada'
 
 # Triggres ou gatilhos de execução
-  #Getilho de exec manual = workflow_dispatch
+#Getilho de exec manual = workflow_dispatch
 
 on:
   workflow_dispatch:
 
 jobs:
-
   inspection:
-
-    runs-on: 
-       - ubuntu-latest
+    runs-on:
+      - ubuntu-latest
 
     # passo a passo das acoes do job
     steps:
@@ -22,32 +20,30 @@ jobs:
 
       - name: Instalando yarn
         run: npm install -g yarn
-      
+
       - name: Instalando dependencias
         run: yarn
 
       - name: Padronizacão de codigo (Lint)
         run: yarn lint
 
-
   # Descrição do job
   e2e-tests:
-    
     # Maquina que o job vai executar
-    runs-on: 
-       - ubuntu-latest
+    runs-on:
+      - ubuntu-latest
 
     # passo a passo das acoes do job
     steps:
       - uses: actions/checkout@v4
-      
+
       #- uses: actions/setup-node@v4
       #  with:
       #   node-version: lts/*
 
       - name: Instalando yarn
         run: npm install -g yarn
-      
+
       - name: Instalando dependencias
         run: yarn
 
@@ -61,4 +57,4 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: relatorio-de-testes
-          path:  ./playwright-report
+          path: ./playwright-report
