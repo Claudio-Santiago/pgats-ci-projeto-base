@@ -1,4 +1,4 @@
-# CI de Nivel 01 - Disparo manual a partir de 1 click
+# CI de Nivel 03 - Disparado pos deblopy
 
 #nome do pipeline
 name: 'Execução por Deploy'
@@ -20,6 +20,9 @@ jobs:
     # Maquina que o job vai executar
     runs-on: 
        - ubuntu-latest
+    
+    # Valida se o build foi executado com sucesso
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # passo a passo das acoes do job
     steps:

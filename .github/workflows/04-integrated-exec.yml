@@ -1,16 +1,34 @@
-# CI de Nivel 02 - Disparo Agendado
+# CI de Nivel 04 - Disparo dentro do fluxo de CI de dev
 
 #nome do pipeline
-name: 'Execução Agandado'
+name: 'Execução Integrada'
 
 # Triggres ou gatilhos de execução
   #Getilho de exec manual = workflow_dispatch
 
 on:
-  schedule:
-    - cron: '29 15 * * *'
+  workflow_dispatch:
 
 jobs:
+
+  inspection:
+
+    runs-on: 
+       - ubuntu-latest
+
+    # passo a passo das acoes do job
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalando yarn
+        run: npm install -g yarn
+      
+      - name: Instalando dependencias
+        run: yarn
+
+      - name: Padronizacão de codigo (Lint)
+        run: yarn lint
+
 
   # Descrição do job
   e2e-tests:
